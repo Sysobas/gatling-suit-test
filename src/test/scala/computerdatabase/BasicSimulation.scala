@@ -47,10 +47,10 @@ class BasicSimulation extends Simulation {
       nothingFor(4 seconds),
       atOnceUsers(1),
       rampUsers(1) during (5 seconds),
-      constantUsersPerSec(2) during (15 seconds),
-      constantUsersPerSec(2) during (15 seconds) randomized,
-      rampUsersPerSec(1) to 20 during (10 minutes),
-      rampUsersPerSec(1) to 20 during (10 minutes) randomized,
+      constantUsersPerSec(1) during (15 seconds),
+      constantUsersPerSec(1) during (15 seconds) randomized,
+      rampUsersPerSec(1) to 2 during (2 minutes),
+      rampUsersPerSec(1) to 2 during (2 minutes) randomized,
       heavisideUsers(1) during (20 seconds)
     )).protocols(httpProtocol)
 }
