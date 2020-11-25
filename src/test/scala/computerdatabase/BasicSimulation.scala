@@ -1,13 +1,17 @@
 package computerdatabase
 
+import computerdatabase.utils.Manipulador
 import io.gatling.core.Predef._
 import io.gatling.http.Predef._
+
 import scala.concurrent.duration._
 
 class BasicSimulation extends Simulation {
 
+  val props = Manipulador.getProp();
+
   val httpProtocol = http
-    .baseUrl("https://www.centenariofm.com.br")
+    .baseUrl(props.getProperty("prop.baseUrl"))
     .acceptHeader("text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8")
     .acceptEncodingHeader("gzip, deflate")
     .acceptLanguageHeader("en-US,en;q=0.5")
@@ -15,31 +19,31 @@ class BasicSimulation extends Simulation {
 
   val scn = scenario("Scenario Name")
     .exec(http("request_1")
-      .get("/"))
+      .get(props.getProperty("prop.index")))
     .pause(7)
     .exec(http("request_2")
-      .get("/noticias"))
+      .get(props.getProperty("prop.index") + props.getProperty("prop.test1")))
     .pause(7)
     .exec(http("request_3")
-      .get("/noticias/morre-francisco-camargo-pai-dos-sertanejos-zeze-e-luciano"))
+      .get(props.getProperty("prop.index") + props.getProperty("prop.test1") + props.getProperty("prop.test2")))
     .pause(7)
     .exec(http("request_4")
-      .get("/noticias"))
+      .get(props.getProperty("prop.index") + props.getProperty("prop.test1")))
     .pause(7)
     .exec(http("request_5")
-      .get("/noticias/urgente-araraquara-vive-madrugada-de-terror"))
+      .get(props.getProperty("prop.index") + props.getProperty("prop.test1") + props.getProperty("prop.test3")))
     .pause(7)
     .exec(http("request_6")
-      .get("/noticias"))
+      .get(props.getProperty("prop.index") + props.getProperty("prop.test1")))
     .pause(7)
     .exec(http("request_7")
-      .get("/noticias/tabatinga-11-novos-casos-e-1-obito-pela-covid-19-e-registrado-no-municipio-numero-de-casos-chega-a-401"))
+      .get(props.getProperty("prop.index") + props.getProperty("prop.test1") + props.getProperty("prop.test4")))
     .pause(7)
     .exec(http("request_8")
-      .get("/noticias"))
+      .get(props.getProperty("prop.index") + props.getProperty("prop.test1")))
     .pause(7)
     .exec(http("request_9")
-      .get("/"))
+      .get(props.getProperty("prop.index")))
     .pause(7)
 
   setUp(
