@@ -20,8 +20,8 @@ class BasicSimulation extends Simulation {
   val scn = scenario("Scenario Name")
     .exec(http("request_1")
       .get(props.getProperty("prop.index")))
-    .pause(7)
-    .exec(http("request_2")
+    .pause(6)
+    /*.exec(http("request_2")
       .get(props.getProperty("prop.index") + props.getProperty("prop.test1")))
     .pause(7)
     .exec(http("request_3")
@@ -44,17 +44,17 @@ class BasicSimulation extends Simulation {
     .pause(7)
     .exec(http("request_9")
       .get(props.getProperty("prop.index")))
-    .pause(7)
+    .pause(7)*/
 
   setUp(
     scn.inject(
-      nothingFor(4 seconds),
+      nothingFor(6 seconds),
       atOnceUsers(1),
-      rampUsers(1) during (5 seconds),
-      constantUsersPerSec(1) during (5 seconds),
-      constantUsersPerSec(1) during (5 seconds) randomized,
-      rampUsersPerSec(1) to 1 during (1 minutes),
-      rampUsersPerSec(1) to 1 during (1 minutes) randomized,
-      heavisideUsers(1) during (5 seconds)
+      rampUsers(100) during (35 seconds),
+      constantUsersPerSec(10) during (35 seconds),
+      constantUsersPerSec(10) during (35 seconds) randomized,
+      rampUsersPerSec(10) to 1 during (25 seconds),
+      rampUsersPerSec(10) to 1 during (25 seconds) randomized,
+      heavisideUsers(10) during (5 seconds)
     )).protocols(httpProtocol)
 }
